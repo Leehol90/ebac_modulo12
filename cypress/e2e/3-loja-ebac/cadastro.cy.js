@@ -7,8 +7,7 @@ describe('Funcionalidade: Cadastro', () => {
         cy.visit('minha-conta')    
     });
 
-      it.only('Deve completar o cadastro com sucesso - usando variáveis', () => {
-
+    it('Deve completar o cadastro com sucesso - usando variáveis', () => {
         var nome = faker.person.firstName()
         var sobrenome = faker.person.lastName()
         var email = faker.internet.email({firstName: nome, lastName: sobrenome})
@@ -21,6 +20,17 @@ describe('Funcionalidade: Cadastro', () => {
         cy.get('#account_first_name').type(nome)
         cy.get('#account_last_name').type(sobrenome)
         cy.get('.woocommerce-Button').click()
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)')
+            .should('contain', `Olá, ${nome.toLowerCase()}`)
+    });
 
+    it.only('Deve completar o cadastro com sucesso - usando comando customizado', () => {
+        var nome = faker.person.firstName()
+        var sobrenome = faker.person.lastName()
+        var email = faker.internet.email({firstName: nome, lastName: sobrenome})
+
+        cy.preCadastro(email, 'teste@teste123', nome, sobrenome)
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)')
+            .should('contain', `Olá, ${nome.toLowerCase()}`)
     });
 });

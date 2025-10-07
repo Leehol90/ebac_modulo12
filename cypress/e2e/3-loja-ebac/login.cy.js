@@ -17,7 +17,7 @@ describe('Funcionalidade: Login', () => {
         cy.get('#password').type('teste@teste123')
         cy.get('.woocommerce-form > .button').click()
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, augusto')
-    })
+    });
     it('Deve exibir uma mensgagem de erro ao inserir usuário inválido', () => {
        
         cy.get('#username').type('zezinho@teste.com')
@@ -42,8 +42,8 @@ describe('Funcionalidade: Login', () => {
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, augusto')
     });
     //Pegando os dados do arquivo fixture, usando a função fixture
-    it.only('Deve fazer login com sucesso - Usando massa de dados', () => {
-        cy.fixture('perfil').then( dados => {
+    it('Deve fazer login com sucesso - Usando massa de dados', () => {
+        cy.fixture('perfil').then( dados => {           //Criacao da variavel 'dados'
             cy.get('#username').type(dados.usuario)
             //log: false: irá esconder a senha na hora da execução, caso houver dados sensíveis
             cy.get('#password').type(dados.senha, {log: false}) 
@@ -51,4 +51,10 @@ describe('Funcionalidade: Login', () => {
         cy.get('.woocommerce-form > .button').click()
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, augusto')
     });
+    it.only('Deve fazer login com sucesso - Usando comandos customizados', () => {
+        //comando login criado na pasta commands
+        cy.login('Augusto@teste.com', 'teste@teste123')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, augusto')
+    });
+    
 })
