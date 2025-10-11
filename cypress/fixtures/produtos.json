@@ -1,0 +1,20 @@
+[
+    {
+        "nomeProduto": "Ariel Roll Sleeve Sweatshirt",
+        "tamanho": "L",
+        "cor": "Purple",
+        "quantidade": 3
+    },
+    {
+        "nomeProduto": "Abominable Hoodie",
+        "tamanho": "M",
+        "cor": "Red",
+        "quantidade": 2
+    },
+    {
+        "nomeProduto": "Arcadio Gym Short",
+        "tamanho": "34",
+        "cor": "Blue",
+        "quantidade": 1
+    }
+]
